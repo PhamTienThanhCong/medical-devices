@@ -217,3 +217,33 @@
    "external_service_provider": "Tên đơn vị bảo trì ngoài"
 }
 ```
+## Hướng dẫn deploy dự án Next.js lên Vercel và gắn domain riêng
+
+## 1. Kết nối GitHub với Vercel
+- Đăng nhập vào [Vercel](https://vercel.com/).
+- Nhấn **New Project** > Chọn repository GitHub chứa dự án Next.js > Nhấn **Import**.
+
+## 2. Cấu hình dự án
+- Vercel tự nhận diện Next.js. Kiểm tra:
+  - **Root Directory**: Để mặc định (thường là thư mục gốc).
+  - **Environment Variables**: Nếu có file `.env` (ví dụ: `NEXT_PUBLIC_API_URL`), thêm vào phần **Environment Variables** khi import.
+- Nhấn **Deploy**. Vercel sẽ build và deploy, cung cấp URL tạm (ví dụ: `your-project.vercel.app`).
+
+## 3. Gắn domain riêng
+- Sau khi deploy, vào dashboard dự án > Tab **Domains**.
+- Thêm domain (ví dụ: `yourdomain.com`).
+- Vercel cung cấp DNS records (A hoặc CNAME). Cập nhật DNS ở nhà cung cấp domain (Namecheap, GoDaddy, v.v.).
+- Chờ DNS propagate (thường vài giờ).
+
+## 4. Merge code và auto-deploy
+- Merge code mới vào branch chính (`main`) trên GitHub qua pull request.
+- Vercel tự động build và deploy lại dự án.
+- Kiểm tra trạng thái trong tab **Deployments** trên Vercel.
+
+## 5. Kiểm tra
+- Truy cập domain riêng để đảm bảo dự án chạy đúng.
+- Nếu lỗi, kiểm tra log trong **Deployments** hoặc thêm lại biến môi trường nếu thiếu.
+
+## Lưu ý
+- Đảm bảo branch chính (`main`) có code Next.js hoàn chỉnh (`package.json`, `next.config.js`, v.v.).
+- Sau khi thêm domain, có thể cần redeploy để áp dụng.
